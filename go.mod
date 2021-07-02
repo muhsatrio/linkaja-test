@@ -1,9 +1,10 @@
-module github.com/iDevoid/stygis
+module financial-planner-be
 
 go 1.15
 
 require (
 	github.com/andybalholm/brotli v1.0.1 // indirect
+	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/gofiber/fiber/v2 v2.3.2
 	github.com/golang/mock v1.4.4
 	github.com/iDevoid/cptx v0.0.0-20210106134833-4c66b596980c

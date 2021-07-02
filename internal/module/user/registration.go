@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/iDevoid/stygis/internal/constant/model"
+	"financial-planner-be/internal/constant/model"
 )
 
 // Registration is basically the flow of creating a new unverified user

@@ -3,8 +3,8 @@ package routing
 import (
 	"net/http"
 
-	"github.com/iDevoid/stygis/internal/handler/rest"
-	"github.com/iDevoid/stygis/platform/routers"
+	"financial-planner-be/internal/handler/rest"
+	"financial-planner-be/platform/routers"
 )
 
 // UserRouting returns the list of routers for domain user

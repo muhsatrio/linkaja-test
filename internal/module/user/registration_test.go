@@ -5,13 +5,14 @@ import (
 	"errors"
 	"testing"
 
+	"financial-planner-be/internal/constant/model"
+	"financial-planner-be/internal/repository"
+	"financial-planner-be/internal/storage/persistence"
+	profile_mock "financial-planner-be/mocks/profile"
+	user_mock "financial-planner-be/mocks/user"
+
 	"github.com/golang/mock/gomock"
 	"github.com/iDevoid/cptx"
-	"github.com/iDevoid/stygis/internal/constant/model"
-	"github.com/iDevoid/stygis/internal/repository"
-	"github.com/iDevoid/stygis/internal/storage/persistence"
-	profile_mock "github.com/iDevoid/stygis/mocks/profile"
-	user_mock "github.com/iDevoid/stygis/mocks/user"
 )
 
 func Test_service_Registration(t *testing.T) {

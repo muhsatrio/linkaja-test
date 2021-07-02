@@ -5,10 +5,11 @@ package user
 import (
 	"context"
 
+	"financial-planner-be/internal/constant/model"
+	"financial-planner-be/internal/repository"
+	"financial-planner-be/internal/storage/persistence"
+
 	"github.com/iDevoid/cptx"
-	"github.com/iDevoid/stygis/internal/constant/model"
-	"github.com/iDevoid/stygis/internal/repository"
-	"github.com/iDevoid/stygis/internal/storage/persistence"
 )
 
 // Usecase contains the function of business logic of domain user

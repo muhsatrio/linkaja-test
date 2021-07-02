@@ -4,13 +4,14 @@ import (
 	"fmt"
 	"os"
 
+	"financial-planner-be/internal/glue/routing"
+	"financial-planner-be/internal/handler/rest"
+	"financial-planner-be/internal/module/user"
+	"financial-planner-be/internal/repository"
+	"financial-planner-be/internal/storage/persistence"
+	"financial-planner-be/platform/routers"
+
 	"github.com/iDevoid/cptx"
-	"github.com/iDevoid/stygis/internal/glue/routing"
-	"github.com/iDevoid/stygis/internal/handler/rest"
-	"github.com/iDevoid/stygis/internal/module/user"
-	"github.com/iDevoid/stygis/internal/repository"
-	"github.com/iDevoid/stygis/internal/storage/persistence"
-	"github.com/iDevoid/stygis/platform/routers"
 	"github.com/sirupsen/logrus"
 )
 

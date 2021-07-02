@@ -6,8 +6,8 @@ import (
 	"crypto/sha512"
 	"fmt"
 
-	"github.com/iDevoid/stygis/internal/constant/model"
-	"github.com/iDevoid/stygis/platform/encryption"
+	"financial-planner-be/internal/constant/model"
+	"financial-planner-be/platform/encryption"
 )
 
 // UserRepository contains the functions of data logic for domain user

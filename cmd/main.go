@@ -4,7 +4,8 @@ import (
 	"flag"
 	"os"
 
-	"github.com/iDevoid/stygis/initiator"
+	"financial-planner-be/initiator"
+
 	_ "github.com/lib/pq"
 )
 

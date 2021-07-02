@@ -5,8 +5,8 @@
 package user_mock
 
 import (
+	model "financial-planner-be/internal/constant/model"
 	gomock "github.com/golang/mock/gomock"
-	model "github.com/iDevoid/stygis/internal/constant/model"
 	reflect "reflect"
 )
 

@@ -5,10 +5,11 @@ package persistence
 import (
 	"context"
 
+	"financial-planner-be/internal/constant/model"
+	"financial-planner-be/internal/constant/query"
+	"financial-planner-be/internal/constant/state"
+
 	"github.com/iDevoid/cptx"
-	"github.com/iDevoid/stygis/internal/constant/model"
-	"github.com/iDevoid/stygis/internal/constant/query"
-	"github.com/iDevoid/stygis/internal/constant/state"
 )
 
 // UserPersistence contains the list of functions for database table users

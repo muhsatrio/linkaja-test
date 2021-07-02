@@ -7,10 +7,11 @@ import (
 	"testing"
 	"time"
 
+	"financial-planner-be/internal/constant/model"
+	"financial-planner-be/internal/constant/query"
+
 	"github.com/golang/mock/gomock"
 	"github.com/iDevoid/cptx"
-	"github.com/iDevoid/stygis/internal/constant/model"
-	"github.com/iDevoid/stygis/internal/constant/query"
 )
 
 func TestProfileInit(t *testing.T) {

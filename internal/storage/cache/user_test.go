@@ -6,10 +6,10 @@ import (
 	"testing"
 	"time"
 
+	"financial-planner-be/internal/constants/model"
+	"financial-planner-be/internal/module/user"
+
 	"github.com/go-redis/redis"
-	"github.com/iDevoid/stygis/internal/constants/model"
-	"github.com/iDevoid/stygis/internal/module/user"
-	mock_redis "github.com/iDevoid/stygis/mocks/redis"
 )
 
 func TestUserInit(t *testing.T) {

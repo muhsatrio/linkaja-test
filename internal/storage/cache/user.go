@@ -6,9 +6,10 @@ import (
 	"fmt"
 	"time"
 
+	"financial-planner-be/internal/constants/model"
+	"financial-planner-be/internal/module/user"
+
 	"github.com/go-redis/redis"
-	"github.com/iDevoid/stygis/internal/constants/model"
-	"github.com/iDevoid/stygis/internal/module/user"
 )
 
 type userCache struct {

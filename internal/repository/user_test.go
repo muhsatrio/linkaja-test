@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/iDevoid/stygis/internal/constant/model"
+	"financial-planner-be/internal/constant/model"
 )
 
 func TestUserInit(t *testing.T) {

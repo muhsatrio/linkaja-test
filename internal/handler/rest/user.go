@@ -5,9 +5,10 @@ import (
 	"errors"
 	"net/http"
 
+	"financial-planner-be/internal/constant/model"
+	"financial-planner-be/internal/module/user"
+
 	"github.com/gofiber/fiber/v2"
-	"github.com/iDevoid/stygis/internal/constant/model"
-	"github.com/iDevoid/stygis/internal/module/user"
 	"github.com/sirupsen/logrus"
 )
 
