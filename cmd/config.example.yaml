@@ -1,0 +1,10 @@
+http:
+  host: 
+  port: 
+data_source:
+  mysql:
+    host: 
+    username: 
+    password: 
+    port: 
+    db_name: 
