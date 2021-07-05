@@ -1,9 +1,9 @@
 package main
 
 import (
+	"financial-planner-be/interactors/user"
 	"financial-planner-be/platform/mysql"
 	"financial-planner-be/platform/yaml"
-	"financial-planner-be/service/user"
 	"financial-planner-be/transport/http"
 	"fmt"
 	"path/filepath"

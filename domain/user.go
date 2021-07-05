@@ -1,6 +1,7 @@
 package domain
 
 type User struct {
-	ID       uint
-	Username string
+	ID    uint
+	Email string
+	Name  string
 }

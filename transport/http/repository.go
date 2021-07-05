@@ -1,7 +1,7 @@
 package http
 
 import (
-	"financial-planner-be/service/user"
+	"financial-planner-be/interactors/user"
 
 	"github.com/gin-gonic/gin"
 )
@@ -19,7 +19,7 @@ func (h HTTP) Serve() {
 	v1 := r.Group("/api/v1")
 
 	usersGroup := v1.Group("/users")
-	usersGroup.POST("")
+	usersGroup.POST("", h.userRegister)
 
 	r.Run(h.Config.Port)
 

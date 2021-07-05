@@ -10,7 +10,8 @@ import (
 
 // UserPersistence contains the list of functions for database table users
 type UserAdapter interface {
-	Create(username, password string) (user domain.User, err error)
+	Create(email, password, name string) (user domain.User, err error)
+	IsExist(email string) (isTrue bool, err error)
 }
 
 type userRepo struct {
@@ -26,25 +27,40 @@ func UserInit(db *gorm.DB) UserAdapter {
 
 // User platform function
 
-func (u userRepo) Create(username, password string) (user domain.User, err error) {
+func (u userRepo) Create(email, password, name string) (user domain.User, err error) {
 
 	temp := User{
-		Username: username,
+		Email:    email,
 		Password: password,
+		Name:     name,
 	}
 
-	if err = u.db.Table("users").Select("username, password").Create(&temp).Error; err != nil {
-		return
-	}
-
-	if err = u.db.Table("users").Select("id, username").First(&temp).Error; err != nil {
+	if err = u.db.Table("users").
+		Create(&temp).
+		Select("id, email, name").Where("email = ?", email).First(&temp).
+		Error; err != nil {
 		return
 	}
 
 	user = domain.User{
-		ID:       temp.ID,
-		Username: temp.Username,
+		ID:    temp.ID,
+		Email: temp.Email,
+		Name:  temp.Name,
 	}
+
+	return
+}
+
+func (u userRepo) IsExist(email string) (isTrue bool, err error) {
+	var count int64
+
+	if err = u.db.Table("users").
+		Where("email = ?", email).Count(&count).
+		Error; err != nil {
+		return
+	}
+
+	isTrue = int(count) > 0
 
 	return
 }

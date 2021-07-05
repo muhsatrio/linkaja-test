@@ -1,20 +1,47 @@
 package interactors
 
-type Error struct {
-	Code    int
+// type Error struct {
+// 	Code    int
+// 	Message string
+// }
+
+type Error interface {
+	error
+}
+
+type ServiceErr struct {
 	Message string
 }
 
+var _ Error = ServiceErr{}
+
+func (s ServiceErr) Error() string {
+	return s.Message
+}
+
 var (
-	ErrInvalidInput = Error{
-		Code:    400,
-		Message: "Invalid Input",
+	ErrInvalidInput = ServiceErr{
+		Message: "Invalid input",
+	}
+	ErrRequiredFieldEmpty = ServiceErr{
+		Message: "Required field is empty",
+	}
+	ErrUnauthorized = ServiceErr{
+		Message: "Unauthorized",
+	}
+	ErrForbiddenAccess = ServiceErr{
+		Message: "Forbidden access",
+	}
+	ErrDataNotFound = ServiceErr{
+		Message: "Data not found",
+	}
+	ErrDuplicateDataAdd = ServiceErr{
+		Message: "Can not add data with duplicate id",
 	}
 )
 
-func InternalErrorCustom(msg string) Error {
-	return Error{
-		Code:    500,
+func InternalErrorCustom(msg string) ServiceErr {
+	return ServiceErr{
 		Message: msg,
 	}
 }
