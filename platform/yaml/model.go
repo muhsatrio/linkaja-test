@@ -6,8 +6,9 @@ import (
 )
 
 type Config struct {
-	HTTP       http.Config `yaml:"http"`
-	DataSource DataSource  `yaml:"data_source"`
+	HTTP       http.Config   `yaml:"http"`
+	Password   http.Password `yaml:"password"`
+	DataSource DataSource    `yaml:"data_source"`
 }
 
 type DataSource struct {

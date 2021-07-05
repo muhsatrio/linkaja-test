@@ -5,22 +5,9 @@ import (
 	"financial-planner-be/platform/yaml"
 	"financial-planner-be/service/user"
 	"financial-planner-be/transport/http"
-	"flag"
 	"fmt"
-	"os"
 	"path/filepath"
-
-	_ "github.com/lib/pq"
 )
-
-var testInit bool
-
-func init() {
-	flag.BoolVar(&testInit, "test", false, "initialize test mode without serving")
-	flag.Parse()
-
-	os.Setenv("TZ", "Asia/Jakarta")
-}
 
 func main() {
 	filePath, _ := filepath.Abs("./cmd/config.yaml")

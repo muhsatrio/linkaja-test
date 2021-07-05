@@ -1,6 +1,8 @@
 http:
   host: 
   port: 
+password:
+  salt_hash:  
 data_source:
   mysql:
     host: 
