@@ -8,6 +8,7 @@ import (
 
 type HTTP struct {
 	Config      Config
+	Password    Password
 	UserService user.Service
 }
 

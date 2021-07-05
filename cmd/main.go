@@ -29,6 +29,7 @@ func main() {
 
 	h := http.HTTP{
 		Config:      conf.HTTP,
+		Password:    conf.Password,
 		UserService: userService,
 	}
 

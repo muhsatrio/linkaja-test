@@ -31,6 +31,7 @@ func (h HTTP) userRegister(c *gin.Context) {
 		Email:    req.Email,
 		Password: req.Password,
 		Name:     req.Name,
+		SaltHash: h.Password.SaltHash,
 	}
 
 	result, err := h.UserService.Register(reqService)

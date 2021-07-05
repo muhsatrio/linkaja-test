@@ -11,11 +11,8 @@ type RegisterRequest struct {
 	Email    string
 	Password string
 	Name     string
+	SaltHash int
 }
-
-const (
-	saltHash = 8
-)
 
 func (s Service) Register(req RegisterRequest) (user domain.User, serviceErr interactors.Error) {
 	if req.Email == "" || req.Password == "" {
@@ -33,7 +30,7 @@ func (s Service) Register(req RegisterRequest) (user domain.User, serviceErr int
 		return
 	}
 
-	hashPassInByte, err := bcrypt.GenerateFromPassword([]byte(req.Password), saltHash)
+	hashPassInByte, err := bcrypt.GenerateFromPassword([]byte(req.Password), req.SaltHash)
 	if err != nil {
 		serviceErr = interactors.InternalErrorCustom(err.Error())
 		return
