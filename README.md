@@ -26,4 +26,10 @@
 3. Create file `config.yaml` on directory `cmd/` based on example format in `cmd/config.example.yaml` and fill the configuration as yours.
 4. Launch the file with `go run main.go` 
 
+## Todo
+
+- Add login feature
+- Add mocks
+- Add Dockerfile
+
 
