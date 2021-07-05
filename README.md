@@ -6,12 +6,12 @@
 ├── cmd -> contain configuration and main file
 ├── domain -> contain entities object of column as a domain that used by Interactors, Platform, and Transport layer
 ├── interactors -> Interactors layer that will interact with Repository in Platform layer
-│   └── user
+│   └── user -> contain service function and usecase that interaction with platform repository function
 ├── platform -> Platform layer that will interact with interactors
-│   ├── mysql
-│   └── yaml
+│   ├── mysql -> contain init function, model and repository function
+│   └── yaml -> contain config and init function
 └── transport
-    └── http -> contain router also httphandler
+    └── http -> contain routes, http handler, and error handler 
 ```
 
 ## List of Package
