@@ -32,4 +32,8 @@
 - Add mocks
 - Add Dockerfile
 
+## Reference
+
+[Ready for changes with Hexagonal Architecture](https://netflixtechblog.com/ready-for-changes-with-hexagonal-architecture-b315ec967749)
+ by [Netflix](https://www.netflix.com/)
 
