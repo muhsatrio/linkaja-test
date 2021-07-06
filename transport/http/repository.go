@@ -1,7 +1,7 @@
 package http
 
 import (
-	"financial-planner-be/interactors/user"
+	"github.com/muhsatrio/golang-boilerplate/interactors/user"
 
 	"github.com/gin-gonic/gin"
 )

@@ -1,8 +1,9 @@
 package http
 
 import (
-	"financial-planner-be/interactors"
 	"net/http"
+
+	"github.com/muhsatrio/golang-boilerplate/interactors"
 )
 
 type ErrorObj struct {

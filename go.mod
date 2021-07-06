@@ -1,4 +1,4 @@
-module financial-planner-be
+module github.com/muhsatrio/golang-boilerplate
 
 go 1.15
 

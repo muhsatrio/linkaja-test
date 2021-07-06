@@ -1,12 +1,13 @@
 package main
 
 import (
-	"financial-planner-be/interactors/user"
-	"financial-planner-be/platform/mysql"
-	"financial-planner-be/platform/yaml"
-	"financial-planner-be/transport/http"
 	"fmt"
 	"path/filepath"
+
+	"github.com/muhsatrio/golang-boilerplate/interactors/user"
+	"github.com/muhsatrio/golang-boilerplate/platform/mysql"
+	"github.com/muhsatrio/golang-boilerplate/platform/yaml"
+	"github.com/muhsatrio/golang-boilerplate/transport/http"
 )
 
 func main() {

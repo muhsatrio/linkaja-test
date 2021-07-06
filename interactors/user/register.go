@@ -1,9 +1,10 @@
 package user
 
 import (
-	"financial-planner-be/domain"
-	"financial-planner-be/interactors"
 	"regexp"
+
+	"github.com/muhsatrio/golang-boilerplate/domain"
+	"github.com/muhsatrio/golang-boilerplate/interactors"
 
 	"golang.org/x/crypto/bcrypt"
 )

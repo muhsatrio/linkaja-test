@@ -1,8 +1,8 @@
 package yaml
 
 import (
-	"financial-planner-be/platform/mysql"
-	"financial-planner-be/transport/http"
+	"github.com/muhsatrio/golang-boilerplate/platform/mysql"
+	"github.com/muhsatrio/golang-boilerplate/transport/http"
 )
 
 type Config struct {

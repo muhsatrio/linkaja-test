@@ -3,7 +3,7 @@ package mysql
 //go:generate mockgen -destination=../../../mocks/user/persistence_mock.go -package=user_mock -source=user.go
 
 import (
-	"financial-planner-be/domain"
+	"github.com/muhsatrio/golang-boilerplate/domain"
 
 	"gorm.io/gorm"
 )
