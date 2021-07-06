@@ -3,6 +3,7 @@ package user
 import (
 	"financial-planner-be/domain"
 	"financial-planner-be/interactors"
+	"regexp"
 
 	"golang.org/x/crypto/bcrypt"
 )
@@ -17,6 +18,11 @@ type RegisterRequest struct {
 func (s Service) Register(req RegisterRequest) (user domain.User, serviceErr interactors.Error) {
 	if req.Email == "" || req.Password == "" {
 		serviceErr = interactors.ErrRequiredFieldEmpty
+		return
+	}
+
+	if !isEmailValid(req.Email) {
+		serviceErr = interactors.ErrInvalidInput
 		return
 	}
 
@@ -43,4 +49,9 @@ func (s Service) Register(req RegisterRequest) (user domain.User, serviceErr int
 	}
 
 	return
+}
+
+func isEmailValid(e string) bool {
+	emailRegex := regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`)
+	return emailRegex.MatchString(e)
 }
