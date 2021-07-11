@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"path/filepath"
 
+	"github.com/muhsatrio/golang-boilerplate/interactors/auth"
 	"github.com/muhsatrio/golang-boilerplate/interactors/user"
+	"github.com/muhsatrio/golang-boilerplate/platform/jwt"
 	"github.com/muhsatrio/golang-boilerplate/platform/mysql"
 	"github.com/muhsatrio/golang-boilerplate/platform/yaml"
 	"github.com/muhsatrio/golang-boilerplate/transport/http"
@@ -24,14 +26,21 @@ func main() {
 
 	userRepo := mysql.UserInit(db)
 
+	jwtRepo := jwt.Init(conf.Auth.SigningKey, conf.Auth.Expiry)
+
 	userService := user.Service{
 		UserRepo: userRepo,
 	}
 
+	authService := auth.Service{
+		JwtRepo: jwtRepo,
+	}
+
 	h := http.HTTP{
 		Config:      conf.HTTP,
-		Password:    conf.Password,
+		Auth:        conf.Auth,
 		UserService: userService,
+		AuthService: authService,
 	}
 
 	h.Serve()

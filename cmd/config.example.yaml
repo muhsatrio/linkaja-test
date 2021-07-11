@@ -1,8 +1,10 @@
 http:
   host: 
   port: 
-password:
-  salt_hash:  
+auth:
+  signing_key: 
+  salt_hash: 
+  expiry:  # in days
 data_source:
   mysql:
     host: 

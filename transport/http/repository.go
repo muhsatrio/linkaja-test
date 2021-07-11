@@ -1,6 +1,7 @@
 package http
 
 import (
+	"github.com/muhsatrio/golang-boilerplate/interactors/auth"
 	"github.com/muhsatrio/golang-boilerplate/interactors/user"
 
 	"github.com/gin-gonic/gin"
@@ -8,8 +9,9 @@ import (
 
 type HTTP struct {
 	Config      Config
-	Password    Password
+	Auth        Auth
 	UserService user.Service
+	AuthService auth.Service
 }
 
 func (h HTTP) Serve() {

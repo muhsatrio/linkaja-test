@@ -5,6 +5,8 @@ type Config struct {
 	Port string `yaml:"port"`
 }
 
-type Password struct {
-	SaltHash int `yaml:"salt_hash"`
+type Auth struct {
+	SigningKey string `yaml:"signing_key"`
+	SaltHash   int    `yaml:"salt_hash"`
+	Expiry     int    `yaml:"expiry"`
 }
