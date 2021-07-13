@@ -1,3 +1,4 @@
+//go:generate mockgen -destination=../../mocks/platform/jwt/mock.go -package=mock_jwt github.com/muhsatrio/golang-boilerplate/platform/jwt JwtAdapter
 package jwt
 
 import "github.com/muhsatrio/golang-boilerplate/domain"
