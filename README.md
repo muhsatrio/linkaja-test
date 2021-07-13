@@ -34,7 +34,7 @@
 
 ## Todo
 
-- Add login feature
-- Add mocks
+- Add login feature [WIP]
+- Add mocks [WIP]
 - Add Dockerfile
 
