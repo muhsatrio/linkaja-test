@@ -28,12 +28,13 @@ func main() {
 
 	jwtRepo := jwt.Init(conf.Auth.SigningKey, conf.Auth.Expiry)
 
-	userService := user.Service{
+	userService := user.Interactors{
 		UserRepo: userRepo,
 	}
 
-	authService := auth.Service{
-		JwtRepo: jwtRepo,
+	authService := auth.Interactors{
+		JwtRepo:  jwtRepo,
+		UserRepo: userRepo,
 	}
 
 	h := http.HTTP{

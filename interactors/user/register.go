@@ -16,7 +16,7 @@ type RegisterRequest struct {
 	SaltHash int
 }
 
-func (s Service) Register(req RegisterRequest) (user domain.User, serviceErr interactors.Error) {
+func (s Interactors) Register(req RegisterRequest) (user domain.User, serviceErr interactors.Error) {
 	if req.Email == "" || req.Password == "" {
 		serviceErr = interactors.ErrRequiredFieldEmpty
 		return

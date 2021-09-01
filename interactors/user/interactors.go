@@ -13,8 +13,8 @@ type Usecase interface {
 	Register(req RegisterRequest) (user domain.User, serviceErr interactors.Error)
 }
 
-type Service struct {
+type Interactors struct {
 	UserRepo mysql.UserAdapter
 }
 
-var _ Usecase = Service{}
+var _ Usecase = Interactors{}

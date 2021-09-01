@@ -4,6 +4,7 @@ package mysql
 
 import (
 	"github.com/muhsatrio/golang-boilerplate/domain"
+	"github.com/muhsatrio/golang-boilerplate/platform"
 
 	"gorm.io/gorm"
 )
@@ -12,6 +13,7 @@ import (
 type UserAdapter interface {
 	Create(email, password, name string) (user domain.User, err error)
 	IsExist(email string) (isTrue bool, err error)
+	FindUser(email string) (user domain.User, err error)
 }
 
 type userRepo struct {
@@ -61,6 +63,26 @@ func (u userRepo) IsExist(email string) (isTrue bool, err error) {
 	}
 
 	isTrue = int(count) > 0
+
+	return
+}
+
+func (u userRepo) FindUser(email string) (user domain.User, err error) {
+	var temp User
+
+	if err = u.db.Table("users").Where("email = ?", email).First(&temp).Error; err != nil {
+		if err == gorm.ErrRecordNotFound {
+			err = platform.ErrNotFound
+		}
+		return
+	}
+
+	user = domain.User{
+		ID:       temp.ID,
+		Email:    temp.Email,
+		Name:     temp.Name,
+		Password: temp.Password,
+	}
 
 	return
 }

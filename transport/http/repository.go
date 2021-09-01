@@ -10,8 +10,8 @@ import (
 type HTTP struct {
 	Config      Config
 	Auth        Auth
-	UserService user.Service
-	AuthService auth.Service
+	UserService user.Interactors
+	AuthService auth.Interactors
 }
 
 func (h HTTP) Serve() {
@@ -23,6 +23,9 @@ func (h HTTP) Serve() {
 
 	usersGroup := v1.Group("/users")
 	usersGroup.POST("", h.userRegister)
+
+	authGroup := v1.Group("/auth")
+	authGroup.POST("/login", h.authLogin)
 
 	r.Run(h.Config.Port)
 

@@ -4,39 +4,39 @@ type Error interface {
 	error
 }
 
-type ServiceErr struct {
+type InteractorsErr struct {
 	Message string
 }
 
-var _ Error = ServiceErr{}
+var _ Error = InteractorsErr{}
 
-func (s ServiceErr) Error() string {
+func (s InteractorsErr) Error() string {
 	return s.Message
 }
 
 var (
-	ErrInvalidInput = ServiceErr{
+	ErrInvalidInput = InteractorsErr{
 		Message: "Invalid input",
 	}
-	ErrRequiredFieldEmpty = ServiceErr{
+	ErrRequiredFieldEmpty = InteractorsErr{
 		Message: "Required field is empty",
 	}
-	ErrUnauthorized = ServiceErr{
+	ErrUnauthorized = InteractorsErr{
 		Message: "Unauthorized",
 	}
-	ErrForbiddenAccess = ServiceErr{
+	ErrForbiddenAccess = InteractorsErr{
 		Message: "Forbidden access",
 	}
-	ErrDataNotFound = ServiceErr{
+	ErrDataNotFound = InteractorsErr{
 		Message: "Data not found",
 	}
-	ErrDuplicateDataAdd = ServiceErr{
-		Message: "Can not add data with duplicate id",
+	ErrDuplicateDataAdd = InteractorsErr{
+		Message: "Can not add data with duplicate identifier",
 	}
 )
 
-func InternalErrorCustom(msg string) ServiceErr {
-	return ServiceErr{
+func InternalErrorCustom(msg string) InteractorsErr {
+	return InteractorsErr{
 		Message: msg,
 	}
 }
