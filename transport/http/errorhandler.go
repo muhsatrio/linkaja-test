@@ -3,7 +3,7 @@ package http
 import (
 	"net/http"
 
-	"github.com/muhsatrio/golang-boilerplate/interactors"
+	"linkaja-test/interactors"
 )
 
 type ErrorObj struct {
@@ -18,15 +18,7 @@ func errorHandler(err interactors.Error) (int, ErrorObj) {
 		{
 			errCode = http.StatusBadRequest
 		}
-	case interactors.ErrUnauthorized:
-		{
-			errCode = http.StatusUnauthorized
-		}
-	case interactors.ErrForbiddenAccess:
-		{
-			errCode = http.StatusForbidden
-		}
-	case interactors.ErrDataNotFound:
+	case interactors.ErrAccountNotFound:
 		{
 			errCode = http.StatusNotFound
 		}

@@ -15,23 +15,14 @@ func (s InteractorsErr) Error() string {
 }
 
 var (
-	ErrInvalidInput = InteractorsErr{
-		Message: "Invalid input",
+	ErrAccountNotFound = InteractorsErr{
+		Message: "Akun tidak ditemukan",
 	}
-	ErrRequiredFieldEmpty = InteractorsErr{
-		Message: "Required field is empty",
+	ErrInsufficientBalance = InteractorsErr{
+		Message: "Saldo tidak cukup ketika ditransfer",
 	}
-	ErrUnauthorized = InteractorsErr{
-		Message: "Unauthorized",
-	}
-	ErrForbiddenAccess = InteractorsErr{
-		Message: "Forbidden access",
-	}
-	ErrDataNotFound = InteractorsErr{
-		Message: "Data not found",
-	}
-	ErrDuplicateDataAdd = InteractorsErr{
-		Message: "Can not add data with duplicate identifier",
+	ErrAmoutShouldNotBeNegative = InteractorsErr{
+		Message: "Saldo tidak boleh bernilai negatif",
 	}
 )
 

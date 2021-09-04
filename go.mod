@@ -1,4 +1,4 @@
-module github.com/muhsatrio/golang-boilerplate
+module linkaja-test
 
 go 1.15
 

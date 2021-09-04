@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/muhsatrio/golang-boilerplate/platform/mysql"
-	"github.com/muhsatrio/golang-boilerplate/platform/yaml"
-	"github.com/muhsatrio/golang-boilerplate/transport/http"
+	"linkaja-test/platform/mysql"
+	"linkaja-test/platform/yaml"
+	"linkaja-test/transport/http"
 )
 
 func main() {

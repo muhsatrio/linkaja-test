@@ -1,8 +1,8 @@
 package yaml
 
 import (
-	"github.com/muhsatrio/golang-boilerplate/platform/mysql"
-	"github.com/muhsatrio/golang-boilerplate/transport/http"
+	"linkaja-test/platform/mysql"
+	"linkaja-test/transport/http"
 )
 
 type Config struct {
