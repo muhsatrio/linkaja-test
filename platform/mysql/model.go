@@ -1,12 +1,13 @@
 package mysql
 
-import (
-	"gorm.io/gorm"
-)
+type Customer struct {
+	CustomerNumber uint `gorm:"primarykey"`
+	Name           string
+}
 
-type User struct {
-	gorm.Model
-	Email    string
-	Password string
-	Name     string
+type Account struct {
+	AccountNumber  uint `gorm:"primarykey"`
+	Balance        int
+	CustomerNumber uint
+	Customer       Customer `gorm:"foreignKey:CustomerNumber"`
 }
