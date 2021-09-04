@@ -12,7 +12,7 @@ import (
 // UserPersistence contains the list of functions for database table users
 type AccountAdapter interface {
 	Get(accountNumber uint) (account domain.Account, err error)
-	UpdateBalance(receiverAccountNumber uint, balance int) (err error)
+	UpdateBalance(senderAccountNumber uint, receiverAccountNumber uint, balance int) (err error)
 }
 
 type accountRepo struct {
@@ -20,7 +20,7 @@ type accountRepo struct {
 }
 
 // UserInit is to init the user persistence that contains data accounts
-func UserInit(db *gorm.DB) AccountAdapter {
+func AccountInit(db *gorm.DB) AccountAdapter {
 	return accountRepo{
 		db: db,
 	}
@@ -31,7 +31,10 @@ func UserInit(db *gorm.DB) AccountAdapter {
 func (a accountRepo) Get(accountNumber uint) (account domain.Account, err error) {
 	var temp AccountCustom
 
-	if err = a.db.Table("accounts a").Joins("LEFT JOIN customers c").Where("a.account_number = ?", accountNumber).First(&temp).Error; err != nil {
+	if err = a.db.Table("accounts").
+		Select("accounts.account_number account_number, customers.name customer_name, accounts.balance balance").
+		Joins("LEFT JOIN customers ON accounts.customer_number = customers.customer_number").
+		Where("accounts.account_number = ?", accountNumber).First(&temp).Error; err != nil {
 		if err == gorm.ErrRecordNotFound {
 			err = platform.ErrAccountNotFound
 		}
@@ -46,27 +49,23 @@ func (a accountRepo) Get(accountNumber uint) (account domain.Account, err error)
 	return
 }
 
-func (a accountRepo) UpdateBalance(receiverAccountNumber uint, balance int) (err error) {
+func (a accountRepo) UpdateBalance(senderAccountNumber uint, receiverAccountNumber uint, balance int) (err error) {
 	if balance < 0 {
 		err = platform.ErrInvalidInput
 		return
 	}
 
-	if !(receiverAccountNumber == 555001 || receiverAccountNumber == 555002) {
-		err = platform.ErrAccountNotFound
+	if senderAccountNumber == receiverAccountNumber {
+		err = platform.ErrNotAllowedSameUser
 		return
 	}
-
-	senderMap := make(map[uint]uint)
-
-	senderMap[555001] = 555002
-	senderMap[555002] = 555001
-
-	senderAccountNumber := senderMap[receiverAccountNumber]
 
 	var sender Account
 
 	if err = a.db.Table("accounts").Where("account_number = ?", senderAccountNumber).First(&sender).Error; err != nil {
+		if err == gorm.ErrRecordNotFound {
+			err = platform.ErrNotFound
+		}
 		return
 	}
 
@@ -77,7 +76,10 @@ func (a accountRepo) UpdateBalance(receiverAccountNumber uint, balance int) (err
 
 	var receiver Account
 
-	if err = a.db.Table("accounts").Where("account_number = ?", senderAccountNumber).First(&receiver).Error; err != nil {
+	if err = a.db.Table("accounts").Where("account_number = ?", receiverAccountNumber).First(&receiver).Error; err != nil {
+		if err == gorm.ErrRecordNotFound {
+			err = platform.ErrNotFound
+		}
 		return
 	}
 
@@ -89,7 +91,7 @@ func (a accountRepo) UpdateBalance(receiverAccountNumber uint, balance int) (err
 		return
 	}
 
-	if err = a.db.Table("accounts").Where("account_number = ?", receiverAccountNumber).Updates(sender).Error; err != nil {
+	if err = a.db.Table("accounts").Where("account_number = ?", receiverAccountNumber).Updates(receiver).Error; err != nil {
 		return
 	}
 

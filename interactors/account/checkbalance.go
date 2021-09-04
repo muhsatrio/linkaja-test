@@ -12,7 +12,7 @@ type ResponseCheckBalance struct {
 }
 
 func (i Interactors) CheckBalance(accountNumber uint) (resp ResponseCheckBalance, interactorErr interactors.Error) {
-	user, err := i.accountRepo.Get(accountNumber)
+	user, err := i.AccountRepo.Get(accountNumber)
 	if err != nil {
 		if err == platform.ErrAccountNotFound {
 			interactorErr = interactors.ErrAccountNotFound

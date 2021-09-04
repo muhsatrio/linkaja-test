@@ -24,6 +24,9 @@ var (
 	ErrAmoutShouldNotBeNegative = InteractorsErr{
 		Message: "Saldo tidak boleh bernilai negatif",
 	}
+	ErrSendToUserItself = InteractorsErr{
+		Message: "Tidak diperbolehkan transfer ke akun pengirim sendiri",
+	}
 )
 
 func InternalErrorCustom(msg string) InteractorsErr {

@@ -37,12 +37,13 @@ func TestInteractors_Transfer(t *testing.T) {
 				accountRepo: accountMock,
 			},
 			mockRepoFunc: func() {
-				accountMock.EXPECT().UpdateBalance(gomock.Any(), gomock.Any()).Return(platform.ErrInvalidInput)
+				accountMock.EXPECT().UpdateBalance(gomock.Any(), gomock.Any(), gomock.Any()).Return(platform.ErrInvalidInput)
 			},
 			args: args{
 				req: RequestTransfer{
-					AccountNumber: 12345,
-					Amount:        -1000,
+					SenderAccountNumber:   555001,
+					ReceiverAccountNumber: 555002,
+					Amount:                -1000,
 				},
 			},
 			wantInteractorErr: interactors.ErrAmoutShouldNotBeNegative,
@@ -53,12 +54,13 @@ func TestInteractors_Transfer(t *testing.T) {
 				accountRepo: accountMock,
 			},
 			mockRepoFunc: func() {
-				accountMock.EXPECT().UpdateBalance(gomock.Any(), gomock.Any()).Return(platform.ErrAccountNotFound)
+				accountMock.EXPECT().UpdateBalance(gomock.Any(), gomock.Any(), gomock.Any()).Return(platform.ErrAccountNotFound)
 			},
 			args: args{
 				req: RequestTransfer{
-					AccountNumber: 12345,
-					Amount:        10000,
+					SenderAccountNumber:   555001,
+					ReceiverAccountNumber: 555002,
+					Amount:                10000,
 				},
 			},
 			wantInteractorErr: interactors.ErrAccountNotFound,
@@ -69,12 +71,13 @@ func TestInteractors_Transfer(t *testing.T) {
 				accountRepo: accountMock,
 			},
 			mockRepoFunc: func() {
-				accountMock.EXPECT().UpdateBalance(gomock.Any(), gomock.Any()).Return(platform.ErrInsufficientBalance)
+				accountMock.EXPECT().UpdateBalance(gomock.Any(), gomock.Any(), gomock.Any()).Return(platform.ErrInsufficientBalance)
 			},
 			args: args{
 				req: RequestTransfer{
-					AccountNumber: 12345,
-					Amount:        1000000,
+					SenderAccountNumber:   555001,
+					ReceiverAccountNumber: 555002,
+					Amount:                1000000,
 				},
 			},
 			wantInteractorErr: interactors.ErrInsufficientBalance,
@@ -85,12 +88,13 @@ func TestInteractors_Transfer(t *testing.T) {
 				accountRepo: accountMock,
 			},
 			mockRepoFunc: func() {
-				accountMock.EXPECT().UpdateBalance(gomock.Any(), gomock.Any()).Return(nil)
+				accountMock.EXPECT().UpdateBalance(gomock.Any(), gomock.Any(), gomock.Any()).Return(nil)
 			},
 			args: args{
 				req: RequestTransfer{
-					AccountNumber: 12345,
-					Amount:        1000000,
+					SenderAccountNumber:   555001,
+					ReceiverAccountNumber: 555002,
+					Amount:                1000000,
 				},
 			},
 			wantInteractorErr: nil,
@@ -99,7 +103,7 @@ func TestInteractors_Transfer(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			i := Interactors{
-				accountRepo: tt.fields.accountRepo,
+				AccountRepo: tt.fields.accountRepo,
 			}
 			tt.mockRepoFunc()
 			if gotInteractorErr := i.Transfer(tt.args.req); !reflect.DeepEqual(gotInteractorErr, tt.wantInteractorErr) {

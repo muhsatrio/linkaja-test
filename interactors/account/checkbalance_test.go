@@ -74,7 +74,7 @@ func TestInteractors_CheckBalance(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			i := Interactors{
-				accountRepo: tt.fields.accountRepo,
+				AccountRepo: tt.fields.accountRepo,
 			}
 			tt.mockRepoFunc()
 			gotResp, gotInteractorErr := i.CheckBalance(tt.args.accountNumber)

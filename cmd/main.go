@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"path/filepath"
 
+	"linkaja-test/interactors/account"
 	"linkaja-test/platform/mysql"
 	"linkaja-test/platform/yaml"
 	"linkaja-test/transport/http"
@@ -16,14 +17,21 @@ func main() {
 		panic(fmt.Sprintf("error open yaml file: %s", err.Error()))
 	}
 
-	_, err = mysql.Open(conf.DataSource.MySQL)
+	db, err := mysql.Open(conf.DataSource.MySQL)
 	if err != nil {
 		panic(fmt.Sprintf("error open database: %s", err.Error()))
 	}
 
+	accountRepo := mysql.AccountInit(db)
+
+	accountInteractors := account.Interactors{
+		AccountRepo: accountRepo,
+	}
+
 	h := http.HTTP{
-		Config: conf.HTTP,
-		Auth:   conf.Auth,
+		Config:             conf.HTTP,
+		Auth:               conf.Auth,
+		AccountInteractors: accountInteractors,
 	}
 
 	h.Serve()

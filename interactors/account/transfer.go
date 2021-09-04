@@ -6,12 +6,13 @@ import (
 )
 
 type RequestTransfer struct {
-	AccountNumber uint
-	Amount        int
+	SenderAccountNumber   uint
+	ReceiverAccountNumber uint
+	Amount                int
 }
 
 func (i Interactors) Transfer(req RequestTransfer) (interactorErr interactors.Error) {
-	err := i.accountRepo.UpdateBalance(req.AccountNumber, req.Amount)
+	err := i.AccountRepo.UpdateBalance(req.SenderAccountNumber, req.ReceiverAccountNumber, req.Amount)
 	if err != nil {
 		if err == platform.ErrInvalidInput {
 			interactorErr = interactors.ErrAmoutShouldNotBeNegative
@@ -19,6 +20,8 @@ func (i Interactors) Transfer(req RequestTransfer) (interactorErr interactors.Er
 			interactorErr = interactors.ErrAccountNotFound
 		} else if err == platform.ErrInsufficientBalance {
 			interactorErr = interactors.ErrInsufficientBalance
+		} else if err == platform.ErrNotAllowedSameUser {
+			interactorErr = interactors.ErrSendToUserItself
 		} else {
 			interactorErr = interactors.InternalErrorCustom(err.Error())
 		}

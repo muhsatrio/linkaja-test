@@ -50,15 +50,15 @@ func (mr *MockAccountAdapterMockRecorder) Get(arg0 interface{}) *gomock.Call {
 }
 
 // UpdateBalance mocks base method.
-func (m *MockAccountAdapter) UpdateBalance(arg0 uint, arg1 int) error {
+func (m *MockAccountAdapter) UpdateBalance(arg0, arg1 uint, arg2 int) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "UpdateBalance", arg0, arg1)
+	ret := m.ctrl.Call(m, "UpdateBalance", arg0, arg1, arg2)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // UpdateBalance indicates an expected call of UpdateBalance.
-func (mr *MockAccountAdapterMockRecorder) UpdateBalance(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockAccountAdapterMockRecorder) UpdateBalance(arg0, arg1, arg2 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateBalance", reflect.TypeOf((*MockAccountAdapter)(nil).UpdateBalance), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateBalance", reflect.TypeOf((*MockAccountAdapter)(nil).UpdateBalance), arg0, arg1, arg2)
 }

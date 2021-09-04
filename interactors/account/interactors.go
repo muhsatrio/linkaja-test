@@ -12,7 +12,7 @@ type Usecase interface {
 }
 
 type Interactors struct {
-	accountRepo mysql.AccountAdapter
+	AccountRepo mysql.AccountAdapter
 }
 
 var _ Usecase = Interactors{}

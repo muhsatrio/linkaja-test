@@ -14,7 +14,7 @@ func errorHandler(err interactors.Error) (int, ErrorObj) {
 	var errCode int
 
 	switch err {
-	case interactors.ErrInvalidInput, interactors.ErrRequiredFieldEmpty, interactors.ErrDuplicateDataAdd:
+	case interactors.ErrAmoutShouldNotBeNegative, interactors.ErrInsufficientBalance, interactors.ErrSendToUserItself:
 		{
 			errCode = http.StatusBadRequest
 		}
