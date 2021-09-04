@@ -11,3 +11,9 @@ type Account struct {
 	CustomerNumber uint
 	Customer       Customer `gorm:"foreignKey:CustomerNumber"`
 }
+
+type AccountCustom struct {
+	AccountNumber uint
+	CustomerName  string
+	Balance       int
+}
